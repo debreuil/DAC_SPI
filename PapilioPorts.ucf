@@ -11,12 +11,14 @@
 ##################################################################################
 
 # Crystal Clock - use 32MHz onboard oscillator
-NET "clk" LOC = "P89" | IOSTANDARD = LVCMOS25 | PERIOD = 31.25ns ;
+NET "SYSCLK" LOC = "P89" | IOSTANDARD = LVCMOS25 | PERIOD = 31.25ns ;
 
 # motor control
-NET "CS" LOC = "P18" ;	
-NET "SCK" LOC = "P23" ;  	
-NET "MOSI" LOC = "P26" ;  		
+NET "SCK" LOC = "P18" ;  	
+NET "MOSI" LOC = "P23" ;  
+NET "CS0" LOC = "P26" ;		
+NET "CS1" LOC = "P33" ;			
+	
 
 # led tests
 #NET "MODE" LOC = "P18" ;	

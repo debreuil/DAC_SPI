@@ -4,53 +4,58 @@ USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-USE ieee.numeric_std.ALL;
+--USE ieee.numeric_std.ALL;
  
-ENTITY DACFader_test IS
-END DACFader_test;
+ENTITY DualDac_test IS
+END DualDac_test;
  
-ARCHITECTURE behavior OF DACFader_test IS 
+ARCHITECTURE behavior OF DualDac_test IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT DACFader
+    COMPONENT DualDac
     PORT(
-         CLK : IN  std_logic;
+         SYSCLK : IN  std_logic;
          SCK : INOUT  std_logic;
-         CS : INOUT  std_logic;
-         MOSI : INOUT  std_logic
+         MOSI : OUT  std_logic;
+         CS0 : OUT  std_logic;
+         CS1 : OUT  std_logic
         );
     END COMPONENT;
     
 
    --Inputs
-   signal CLK : std_logic := '0';
+   signal SYSCLK : std_logic := '0';
 
 	--BiDirs
    signal SCK : std_logic;
-   signal CS : std_logic;
+
+ 	--Outputs
    signal MOSI : std_logic;
+   signal CS0 : std_logic;
+   signal CS1 : std_logic;
 
    -- Clock period definitions
-   constant CLK_period : time := 10 ns;
+   constant SYSCLK_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: DACFader PORT MAP (
-          CLK => CLK,
+   uut: DualDac PORT MAP (
+          SYSCLK => SYSCLK,
           SCK => SCK,
-          CS => CS,
-          MOSI => MOSI
+          MOSI => MOSI,
+          CS0 => CS0,
+          CS1 => CS1
         );
 
    -- Clock process definitions
-   CLK_process :process
+   SYSCLK_process :process
    begin
-		CLK <= '0';
-		wait for CLK_period/2;
-		CLK <= '1';
-		wait for CLK_period/2;
+		SYSCLK <= '0';
+		wait for SYSCLK_period/2;
+		SYSCLK <= '1';
+		wait for SYSCLK_period/2;
    end process;
  
 
@@ -60,7 +65,7 @@ BEGIN
       -- hold reset state for 100 ns.
       wait for 100 ns;	
 
-      wait for CLK_period*10;
+      --wait for SYSCLK_period*2;
 
       -- insert stimulus here 
 

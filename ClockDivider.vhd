@@ -12,7 +12,7 @@ entity ClockDivider is
 	PORT 
 	( 
 		CLK : in  STD_LOGIC;
-		CLK_OUT : out  STD_LOGIC
+		CLK_OUT : out  STD_LOGIC := '0'
 	);
 end ClockDivider;
 
@@ -22,14 +22,13 @@ begin
 	
 	process(CLK)
 	
-		variable halfDelay:integer := DELAY / 2;
 		variable counter : integer range 0 to DELAY := 0;
 		
 		begin
 		
 			if(CLK'event AND CLK='1') then
 				counter := counter + 1;
-				if counter = halfDelay then
+				if counter = DELAY / 2 then
 					CLK_OUT <= '0';
 				elsif counter = DELAY then
 					counter := 0;
