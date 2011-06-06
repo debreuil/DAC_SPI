@@ -14,18 +14,19 @@ entity UpDownDAC is
 	port
 	(
 		CLK : IN std_logic;
-		BUSY: IN std_logic;
 		ACK: IN std_logic;
 		
+		DEVICE_SIZE: OUT std_logic_vector (5 downto 0);
+		DIRECTION : OUT std_logic;
 		REQUEST: OUT std_logic;
-		OUT_VALUE: OUT std_logic_vector (15 downto 0)
+		WRITE_BUFFER: OUT std_logic_vector (15 downto 0)
 	);
 end UpDownDAC;
 
 architecture Behavioral of UpDownDAC is
 
 	signal DAC_VALUE: std_logic_vector (11 downto 0);
-	signal counterVal:integer;
+	signal counterVal:integer range min to max := min;
 		
 begin
 
@@ -33,11 +34,12 @@ begin
 		port map 
 		(
 			CLK => CLK, 
-			BUSY => BUSY, 
 			VALUE => DAC_VALUE, 
-			ACK => ACK, 
+			ACK => ACK, 		
+			DEVICE_SIZE => DEVICE_SIZE, 	
+			DIRECTION => DIRECTION, 
 			REQUEST => REQUEST, 
-			OUT_VALUE => OUT_VALUE
+			WRITE_BUFFER => WRITE_BUFFER
 		);	
 		
 	udc : entity work.UpDownCounter(Behavioral)

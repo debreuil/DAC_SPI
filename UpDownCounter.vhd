@@ -13,7 +13,7 @@ entity UpDownCounter is
 	port
 	(
 		CLK : IN std_logic;
-		COUNTER_OUT : OUT integer := min
+		COUNTER_OUT : OUT integer range min to max := min
 	);
 	
 end UpDownCounter;

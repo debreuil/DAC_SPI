@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 package SPI is	
 	
-	constant DEVICE_COUNT : integer := 2;
+	--constant DEVICE_COUNT : integer := 2;
 	--type SPI_DEVICES is array(0 to DEVICE_COUNT) of std_logic;
 	--type SPI_DEVICES is std_logic_vector(0 to DEVICE_COUNT);
 	

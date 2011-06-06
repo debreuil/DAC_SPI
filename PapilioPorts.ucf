@@ -14,10 +14,11 @@
 NET "SYSCLK" LOC = "P89" | IOSTANDARD = LVCMOS25 | PERIOD = 31.25ns ;
 
 # motor control
-NET "SCK" LOC = "P18" ;  	
-NET "MOSI" LOC = "P23" ;  
+NET "DATA" LOC = "P18" ;  
+NET "SCK" LOC = "P23" ;  	
 NET "CS0" LOC = "P26" ;		
-NET "CS1" LOC = "P33" ;			
+NET "CS1" LOC = "P33" ;	
+NET "CS2" LOC = "P35" ;			
 	
 
 # led tests
